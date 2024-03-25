@@ -1,0 +1,11 @@
+javascript:
+var cat_body = document.getElementsByClassName("product-category");
+var cat_id = (cat_body.length==0)?null:cat_body[0].className.split("_")[1];
+var product_id = (document.getElementsByName("product_id").length==0)?null:document.getElementsByName("product_id")[0].value;
+var url_edit = "https://"+document.location.hostname+"/admin/index.php";
+if (product_id) { url_edit = url_edit+"?route=catalog/product/edit&product_id="+product_id; } 
+else if (cat_id) { url_edit = url_edit+"?route=catalog/category/edit&category_id="+cat_id; }
+var backend = window.open("", "oc_backend");
+var token = new URLSearchParams(backend.document.location.search).get("token");
+if (token) { url_edit = url_edit+"&token="+token };
+window.open(url_edit, "oc_backend");
