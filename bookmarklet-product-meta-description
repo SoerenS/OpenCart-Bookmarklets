@@ -1,0 +1,3 @@
+javascript:
+var meta = document.activeElement.value = "Køb " + document.getElementById("input-name2").value.trim() + " samt andet fra " + document.getElementById("input-manufacturer").value.trim() + ". Vi har prisgaranti, hurtig levering med GLS og Fremragende score på Trustpilot."; 
+window.navigator.clipboard.writeText(meta);
