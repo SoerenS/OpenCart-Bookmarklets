@@ -1,0 +1,12 @@
+javascript:
+var elm = document.activeElement;
+var slug = elm.value;
+slug = slug.toLowerCase().trim();
+slug = slug.replaceAll(" - ", " ");
+slug = slug.replaceAll("/", "-");
+slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
+slug = slug.replaceAll("(","").replaceAll(")","");
+slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
+slug = slug.replaceAll("  ", " ");
+slug = slug.replaceAll(" ", "-");
+window.navigator.clipboard.writeText(slug);
