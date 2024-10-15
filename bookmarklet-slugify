@@ -1,12 +1,21 @@
 javascript:
-var elm = document.activeElement;
-var slug = elm.value;
-slug = slug.toLowerCase().trim();
-slug = slug.replaceAll(" - ", " ");
-slug = slug.replaceAll("/", "-");
-slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
-slug = slug.replaceAll("(","").replaceAll(")","");
-slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
-slug = slug.replaceAll("  ", " ");
-slug = slug.replaceAll(" ", "-");
-window.navigator.clipboard.writeText(slug);
+var elm_active = document.activeElement;
+if (elm_active.id.startsWith("product_description")) {
+	var seq = elm_active.id.split('-')[1];
+	var name = document.getElementById("product_description-"+seq+"-name").value;
+
+	var slug = name;
+	slug = slug.toLowerCase().trim();
+	slug = slug.replaceAll(" - ", " ");
+	slug = slug.replaceAll("/", "-");
+	slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
+	slug = slug.replaceAll("(","").replaceAll(")","");
+	slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
+	slug = slug.replaceAll("  ", " ");
+	slug = slug.replaceAll(" ", "-");
+
+	document.getElementById("urlalias_id_"+seq).value = slug;
+	window.navigator.clipboard.writeText(slug);
+	console.log("slugged");
+
+} else { console.log("missing focus"); }
