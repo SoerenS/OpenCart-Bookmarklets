@@ -1,21 +1,81 @@
 javascript:
+function setify(elm) {
+	inp = elm.value;
+	inp = inp.replaceAll("filtersæt", "filterset");
+	inp = inp.replaceAll("filtersats", "filterset");
+	inp = inp.replaceAll("filteruppsättning", "filterset");
+	inp = inp.replaceAll("filterkit", "filterset");
+	elm.value = inp;
+	return inp;
+}
+function stadify(elm) {
+	inp = elm.value;
+	inp = inp.replaceAll("Filterbyen.dk", "Filterstaden.se");
+	elm.value = inp;
+	return inp;
+}
+
 var elm_active = document.activeElement;
 if (elm_active.id.startsWith("product_description")) {
 	var seq = elm_active.id.split('-')[1];
-	var name = document.getElementById("product_description-"+seq+"-name").value;
 
-	var slug = name;
-	slug = slug.toLowerCase().trim();
-	slug = slug.replaceAll(" - ", " ");
-	slug = slug.replaceAll("/", "-");
-	slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
-	slug = slug.replaceAll("(","").replaceAll(")","");
-	slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
-	slug = slug.replaceAll("  ", " ");
-	slug = slug.replaceAll(" ", "-");
+	var elmName = document.getElementById("product_description-"+seq+"-name");
+	var elmURL = document.getElementById("urlalias_id_"+seq);
+	var elmTitle = document.getElementById("product_description-"+seq+"-meta_title");
+	var elmDescription = document.getElementById("product_description-"+seq+"-meta_description");
+	var elmText = document.getElementById("product_description-"+seq+"-description");
 
-	document.getElementById("urlalias_id_"+seq).value = slug;
-	window.navigator.clipboard.writeText(slug);
-	console.log("slugged");
+	setify(elmName);
+	setify(elmTitle);
+	setify(elmDescription);
+	setify(elmText);
+	console.log("setified");
+
+	stadify(elmName);
+	stadify(elmTitle);
+	stadify(elmDescription);
+	stadify(elmText);
+	console.log("stadified");
+
+	var name = elmName.value;
+
+	if (elmURL.value=="" || (elmURL.value!=""&&window.confirm("url?"))) {
+		var slug = name;
+		slug = slug.toLowerCase().trim();
+		slug = slug.replaceAll(" - ", " ");
+		slug = slug.replaceAll("+", "");
+		slug = slug.replaceAll("|", "");
+		slug = slug.replaceAll("/", "-");
+		slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
+		slug = slug.replaceAll("(","").replaceAll(")","");
+		slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
+		slug = slug.replaceAll("  ", " ");
+		slug = slug.replaceAll(" ", "-");
+
+		elmURL.value = slug;
+		console.log("slugged: "+slug);
+	}
+
+	if (elmTitle.value=="" || (elmTitle.value!=""&&window.confirm("title?"))) {
+		if (name.toLowerCase().includes("filter")) {
+			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;
+		} else {
+			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;	
+		}
+		console.log("titled: "+elmTitle.value);
+	}
+
+	if (elmDescription.value=="" || (elmDescription.value!=""&&window.confirm("meta description?"))) {
+		if (name.toLowerCase().includes("filter")) {
+			elmDescription.value = `Endast filter av högsta kvalitet. Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. ISO 16890 certficerad. Prisgaranti och bärkraftig produktion.`;			
+		} else {
+			elmDescription.value = `Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. Prisgaranti och bärkraftig produktion.`;
+		}
+		console.log("meta described: "+elmDescription.value);
+	}
+
+	if (name.toLowerCase().includes("filterset")) {
+
+	}
 
 } else { console.log("missing focus"); }
