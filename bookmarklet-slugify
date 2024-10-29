@@ -12,6 +12,11 @@ function stadify(elm) {
 	inp = elm.value;
 	inp = inp.replaceAll("Filterbyen.dk", "Filterstaden.se");
 	inp = inp.replaceAll("filterbyen.dk", "filterstaden.se");
+	inp = inp.replaceAll("Filter City", "Filterstaden.se");
+	inp = inp.replaceAll("Filter city", "Filterstaden.se");
+	inp = inp.replaceAll("filter city", "Filterstaden.se");
+	inp = inp.replaceAll("Filterbyen", "Filterstaden.se");
+	inp = inp.replaceAll("Fiilterbyen", "Filterstaden.se");
 	elm.value = inp;
 	return inp;
 }
@@ -45,6 +50,7 @@ if (elm_active.id.startsWith("product_description")) {
 		slug = slug.toLowerCase().trim();
 		slug = slug.replaceAll(" - ", " ");
 		slug = slug.replaceAll("+", "");
+		slug = slug.replaceAll("&", "");
 		slug = slug.replaceAll("|", "");
 		slug = slug.replaceAll("/", "-");
 		slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
@@ -61,7 +67,7 @@ if (elm_active.id.startsWith("product_description")) {
 		if (name.toLowerCase().includes("filter")) {
 			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;
 		} else {
-			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;	
+			elmTitle.value = `Köp ${name}. Nöjdhetsgaranti och bärkraftig produktion`;	
 		}
 		console.log("titled: "+elmTitle.value);
 	}
