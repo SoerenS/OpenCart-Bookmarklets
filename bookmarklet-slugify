@@ -45,7 +45,7 @@ if (elm_active.id.startsWith("product_description")) {
 
 	var name = elmName.value;
 
-	if (elmURL.value=="" || (elmURL.value!=""&&window.confirm("url?"))) {
+	if (elmURL.value=="" || (elmURL.value!=""&&window.confirm("overwrite url?"))) {
 		var slug = name;
 		slug = slug.toLowerCase().trim();
 		slug = slug.replaceAll(" - ", " ");
@@ -58,12 +58,14 @@ if (elm_active.id.startsWith("product_description")) {
 		slug = slug.replaceAll(",","").replaceAll("%","").replaceAll(".","").replaceAll("\"","");
 		slug = slug.replaceAll("  ", " ");
 		slug = slug.replaceAll(" ", "-");
+		slug = slug.replaceAll("---", "-");
+		slug = slug.replaceAll("--", "-");
 
 		elmURL.value = slug;
 		console.log("slugged: "+slug);
 	}
 
-	if (elmTitle.value=="" || (elmTitle.value!=""&&window.confirm("title?"))) {
+	if (elmTitle.value=="" || (elmTitle.value!=""&&window.confirm("overwrite title?"))) {
 		if (name.toLowerCase().includes("filter")) {
 			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;
 		} else {
@@ -72,8 +74,8 @@ if (elm_active.id.startsWith("product_description")) {
 		console.log("titled: "+elmTitle.value);
 	}
 
-	if (elmDescription.value=="" || (elmDescription.value!=""&&window.confirm("meta description?"))) {
-		if (name.toLowerCase().includes("filter")) {
+	if (elmDescription.value=="" || (elmDescription.value!=""&&window.confirm("overwrite meta description?"))) {
+		if (name.toLowerCase().includes("filter") && !name.toLowerCase().includes("dammsugar")) {
 			elmDescription.value = `Endast filter av högsta kvalitet. Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. ISO 16890 certficerad. Prisgaranti och bärkraftig produktion.`;			
 		} else {
 			elmDescription.value = `Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. Prisgaranti och bärkraftig produktion.`;
