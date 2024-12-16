@@ -69,16 +69,16 @@ if (elm_active.id.startsWith("product_description")) {
 		if (name.toLowerCase().includes("filter")) {
 			elmTitle.value = `Köp ${name} - kvalitetsfilter till låga priser`;
 		} else {
-			elmTitle.value = `Köp ${name}. Nöjdhetsgaranti och bärkraftig produktion`;	
+			elmTitle.value = `Köp ${name}. Nöjdhetsgaranti och Stort Urval`;
 		}
 		console.log("titled: "+elmTitle.value);
 	}
 
 	if (elmDescription.value=="" || (elmDescription.value!=""&&window.confirm("overwrite meta description?"))) {
 		if (name.toLowerCase().includes("filter") && !name.toLowerCase().includes("dammsugar")) {
-			elmDescription.value = `Endast filter av högsta kvalitet. Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. ISO 16890 certficerad. Prisgaranti och bärkraftig produktion.`;			
+			elmDescription.value = `Endast filter av högsta kvalitet. Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. ISO 16890 certficerad. Prisgaranti och Stort Urval.`;
 		} else {
-			elmDescription.value = `Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. Prisgaranti och bärkraftig produktion.`;
+			elmDescription.value = `Köp ${name} från oss med nöjdhetsgaranti eller pengarna tillbaka. Prisgaranti och Stort Urval.`;
 		}
 		console.log("meta described: "+elmDescription.value);
 	}
