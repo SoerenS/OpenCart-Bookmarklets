@@ -2,6 +2,7 @@ javascript:
 var activelangno = document.querySelector("#language > li.active > a").href.slice(-1);
 var elmName = document.getElementById("product_description-"+activelangno+"-name");
 var elmURL = document.getElementById("product_description-"+activelangno+"-url_alias");
+if (elmURL==null) elmURL = document.getElementById("urlalias_id_"+activelangno);
 
 var slug = elmName.value;
 slug = slug.toLowerCase().trim();
@@ -9,6 +10,7 @@ slug = slug.replaceAll(" - ", " ");
 slug = slug.replaceAll("+", "");
 slug = slug.replaceAll("&", "");
 slug = slug.replaceAll("|", "");
+slug = slug.replaceAll("°", "");
 slug = slug.replaceAll("/", "-");
 slug = slug.replaceAll("æ","ae").replaceAll("ø","oe").replaceAll("å","aa").replaceAll("ö","o").replaceAll("ä","a");
 slug = slug.replaceAll("(","").replaceAll(")","");
