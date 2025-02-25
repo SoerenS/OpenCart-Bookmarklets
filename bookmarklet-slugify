@@ -1,6 +1,7 @@
 javascript:
 var activelangno = document.querySelector("#language > li.active > a").href.slice(-1);
 var elmName = document.getElementById("product_description-"+activelangno+"-name");
+if (elmName==null) elmName = document.getElementsByName("category_description["+activelangno+"][name]")[0];
 var elmURL = document.getElementById("product_description-"+activelangno+"-url_alias");
 if (elmURL==null) elmURL = document.getElementById("urlalias_id_"+activelangno);
 
